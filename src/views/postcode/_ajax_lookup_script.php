@@ -43,7 +43,10 @@ $formType = isset($formType) ? $formType : ActiveForm::TYPE_VERTICAL;
             url: 'http://api.zippopotam.us/nz/' + $postal,
             data: data,
             success: function (response) {
-                console.log(response);
+                
+                if(!$.trim(response)) {
+                    alert("!!!!!!!!!!!!1");
+                }
                 // update postcode
                 if (response.postcode) {
                     $postcode.val(response.postcode);
@@ -63,6 +66,33 @@ $formType = isset($formType) ? $formType : ActiveForm::TYPE_VERTICAL;
                     
                     $country.val(response.country);
                 }
+            },
+
+            error: function (errorThrown){
+                $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+$postal).success(function(response){
+                    console.log(response);
+                    var address_components = response.results[0].address_components;
+                        $.each(address_components, function(index, component){
+                          var types = component.types;
+                          $.each(types, function(index, type){
+                            if(type == 'locality') {
+                              city = component.long_name;
+                            }
+                            if(type == 'administrative_area_level_1') {
+                              state = component.short_name;
+                            }
+                            if(type == 'country') {
+                              country = component.short_name;
+                            }
+                          });
+                        });
+
+                        //pre-fill the city and state
+                        $city.val(city);
+                        $state.val(state);
+                        $country.val(country);
+
+                })
             },
             dataType: 'json'
         });
