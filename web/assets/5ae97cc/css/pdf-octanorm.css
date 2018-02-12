@@ -1,0 +1,32 @@
+.pdf .table th {
+    background-color: #808285 !important;
+}
+
+.pdf .table-bordered,
+.pdf .table-bordered td {
+    border: 1px solid #808285;
+}
+
+.pdf .table-condensed > thead > tr > th {
+    border-top: 1px solid #808285;
+    border-bottom: 1px solid #808285;
+    border-left: 1px solid #808285;
+}
+
+.pdf .table-condensed > thead > tr > th:last-child {
+    border-right: 1px solid #808285;
+}
+
+.pdf .table-bordered > tbody > tr > th {
+    border-left: 1px solid #808285;
+    border-right: 1px solid #808285;
+    border-top: 1px solid #808285;
+}
+
+.pdf .table-bordered > tbody > tr:last-child > th {
+    border-bottom: 1px solid #808285;
+}
+
+.pdf .table-bordered tr.bottom-border td {
+    border-bottom: 1px solid #808285 !important;
+}

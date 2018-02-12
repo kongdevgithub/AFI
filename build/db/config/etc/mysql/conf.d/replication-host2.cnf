@@ -1,0 +1,8 @@
+[mysqld]
+
+server_id = 2
+auto_increment_offset = 2
+
+# needed if slave is older
+# http://mechanics.flite.com/blog/2014/04/29/disabling-binlog-checksum-for-mysql-5-dot-5-slash-5-dot-6-master-master-replication/
+#binlog_checksum = NONE

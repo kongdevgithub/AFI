@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function initHeader() {
+            var vars = {}, i, j, x, y, z;
+            x = window.location.search.substring(1).split('&');
+            for (i in x) {
+                if (x.hasOwnProperty(i)) {
+                    z = x[i].split('=', 2);
+                    vars[z[0]] = unescape(z[1]);
+                }
+            }
+            x = ['flrompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+            for (i in x) {
+                if (x.hasOwnProperty(i)) {
+                    y = document.getElementsByClassName(x[i]);
+                    for (j = 0; j < y.length; ++j) {
+                        if (y.hasOwnProperty(j)) {
+                            y[j].textContent = vars[x[i]];
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body style="border:0; margin: 0;" onload="initHeader()">
+
+<div style="position:relative;">
+    <img id="header-image" src="https://s3.afi.ink/img/pdf/octanorm/header.png">
+    <div id="header-text" class="section" style="position: absolute; left: 58px; top: 170px; width: 1000px; font-size: 35px; color: #323D47; background: red;"></div>
+</div>
+
+</body>
+</html>

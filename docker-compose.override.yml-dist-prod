@@ -1,0 +1,68 @@
+version: '2'
+
+services:
+
+  php:
+    restart: unless-stopped
+    environment:
+      - DB_ENV_MYSQL_ROOT_PASSWORD=CHANGE_ME
+      - DB_ENV_MYSQL_PASSWORD=CHANGE_ME
+    volumes:
+      - web:/app/web
+      - src:/app/src
+      - docs:/app/docs
+      - vendor:/app/vendor
+      - runtime:/app/runtime
+      - ~/.composer/cache:/root/.composer/cache
+
+  nginx:
+    restart: unless-stopped
+    environment:
+      - DH_SIZE=4096
+    volumes:
+      - web:/app/web
+      - src:/app/src
+      - docs:/app/docs
+      - vendor:/app/vendor
+      - runtime:/app/runtime
+      - /var/acme-webroot:/var/acme-webroot
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ./build/nginx/config/etc/nginx/nginx.force-https.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+      - 443:443
+
+  db:
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=CHANGE_ME
+      - MYSQL_PASSWORD=CHANGE_ME
+    volumes:
+      - ./build/db/config/etc/mysql/conf.d/console.cnf:/etc/mysql/conf.d/console.cnf
+      - ./build/db/config/etc/mysql/conf.d/replication.cnf:/etc/mysql/conf.d/replication.cnf
+      - ./build/db/config/etc/mysql/conf.d/replication-host2.cnf:/etc/mysql/conf.d/replication-host2.cnf
+    ports:
+      - 3306:3306
+
+  memcached:
+    restart: unless-stopped
+    mem_limit: 128m
+    command: memcached -m 128m
+    ports:
+      - 11211:11211
+
+  gearman:
+    restart: unless-stopped
+
+  phpmyadmin:
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:56380:80
+
+
+volumes:
+  web:
+  src:
+  docs:
+  vendor:
+  runtime:

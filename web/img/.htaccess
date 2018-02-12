@@ -1,0 +1,2 @@
+RewriteEngine on 
+RewriteRule ^(.*)$ https://s3.afi.ink/img/$1 [R=301,L]

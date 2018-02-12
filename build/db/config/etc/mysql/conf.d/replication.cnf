@@ -1,0 +1,24 @@
+[mysqld]
+
+auto_increment_increment = 10
+expire_logs_days = 7
+max_binlog_size  = 1G
+
+binlog_do_db = console
+binlog_do_db = console_audit
+binlog_do_db = console_data
+binlog_do_db = console_goldoc
+replicate_do_db = console
+replicate_do_db = console_audit
+replicate_do_db = console_data
+replicate_do_db = console_goldoc
+
+log_slave_updates
+replicate_same_server_id = 0
+
+#log_error = /var/log/mysql/error.log
+log_bin = /var/log/mysql/bin.log
+log_bin_index = /var/log/mysql/bin.index
+relay_log = /var/log/mysql/relay.log
+relay_log_index = /var/log/mysql/relay.index
+relay_log_info_file = /var/log/mysql/relay.info

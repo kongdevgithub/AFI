@@ -1,0 +1,55 @@
+version: '2'
+
+services:
+  nginx:
+    image: phundament/nginx-one:1.9
+    volumes_from:
+      - phpfpm
+    ports:
+      - '80'
+    depends_on:
+      - phpfpm
+
+  phpfpm:
+    build: .
+    working_dir: /app/vendor/dmstr/yii2-pages-module
+    depends_on:
+      - db
+      - seleniumfirefox
+    environment:
+      APP_NAME: pages
+      APP_MIGRATION_LOOKUP: '@vendor/dmstr/yii2-pages-module/tests/migrations'
+      APP_TITLE: 'dmstr/yii2-pages TESTING v2'
+      APP_CONFIG_FILE: '/app/vendor/dmstr/yii2-pages-module/tests/_config/local.php'
+      YII_ENV: 'dev'
+      YII_DEBUG: 1
+      GITHUB_API_TOKEN: ${GITHUB_API_TOKEN}
+      DB_ENV_MYSQL_DATABASE: test
+      DB_ENV_MYSQL_USER: test
+      DB_ENV_MYSQL_PASSWORD: test
+    volumes:
+      - /app
+      - ../:/app/vendor/dmstr/yii2-pages-module
+      #- ~/.composer/cache:/root/.composer/cache
+
+  db:
+    image: 'percona:5.6'
+    ports:
+      - '3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: secretadmin
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+
+  seleniumfirefox:
+    image: selenium/standalone-firefox-debug:2.53.0
+    depends_on:
+      - db
+    # workaround for Docker Beta, see https://github.com/SeleniumHQ/docker-selenium/issues/227#issuecomment-224865735
+    dns: 8.8.4.4
+    environment:
+      - no_proxy=localhost
+    ports:
+      - '4444'
+      - '5900'

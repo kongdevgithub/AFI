@@ -1,0 +1,165 @@
+.pdf tr, .pdf td, .pdf th, .pdf tbody, .pdf thead, .pdf tfoot, .pdf .no-break {
+    page-break-inside: avoid !important;
+}
+
+.break {
+    page-break-after: always !important;
+}
+
+.pdf table tbody tr td:before,
+.pdf table tbody tr td:after {
+    content: "";
+    display: block;
+}
+
+.pdf img {
+    max-width: 100%;
+}
+
+.pdf h2 {
+    margin-top: 0;
+}
+
+.pdf .panel-default {
+    border: 1px solid #51565F;
+    border-radius: 0;
+}
+
+.pdf .table td,
+.pdf .table th {
+    background-color: #fff !important;
+}
+
+.pdf .table th {
+    color: #fff !important;
+    background-color: #51565F !important;
+}
+
+.pdf .table-bordered,
+.pdf .table-bordered td {
+    border: 1px solid #51565F;
+}
+
+.pdf .table-condensed > thead > tr > th {
+    border-top: 1px solid #51565F;
+    border-bottom: 1px solid #51565F;
+    border-left: 1px solid #51565F;
+}
+
+.pdf .table-condensed > thead > tr > th:last-child {
+    border-right: 1px solid #51565F;
+}
+
+.pdf .table-bordered > tbody > tr > th {
+    border-left: 1px solid #51565F;
+    border-right: 1px solid #51565F;
+    border-top: 1px solid #51565F;
+}
+
+.pdf .table-bordered > tbody > tr:last-child > th {
+    border-bottom: 1px solid #51565F;
+}
+
+.pdf #quote-table.table-bordered .product td:first-child,
+.pdf #artwork-table.table-bordered .product > td {
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.pdf .table-bordered .item > td {
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.pdf .table-bordered tr.bottom-border td {
+    border-bottom: 1px solid #51565F !important;
+}
+
+.pdf .detail-view,
+.pdf .detail-view td {
+    border: 1px solid #51565F;
+}
+
+.pdf .detail-view tr:first-child th {
+    border-color: #51565F;
+}
+
+.pdf .panel-default > .panel-heading {
+    border-color: #51565F;
+}
+
+.pdf .greeting {
+    margin: 15px 0 30px 0;
+}
+
+.pdf .footer-text {
+    margin: 30px 0;
+}
+
+.pdf .greeting br,
+.pdf .greeting br {
+    display: block;
+    margin: 7px 0;
+    content: " ";
+}
+
+.pdf .preview {
+    position: absolute;
+    left: 200px;
+    top: 350px;
+    z-index: 1000;
+    opacity: 0.4;
+}
+
+.pdf .preview p {
+    color: lightgrey;
+    font-size: 100px;
+    text-align: center;
+    line-height: 0.8em;
+    transform: rotate(315deg);
+    -webkit-transform: rotate(315deg);
+}
+
+.pdf .text-sm,
+.pdf .text-sm td,
+.pdf .text-sm th {
+    font-size: 85%;
+}
+
+.pdf .text-xs,
+.pdf .text-xs td,
+.pdf .text-xs th {
+    font-size: 70%;
+}
+
+.pdf .note {
+    border-bottom: 1px solid #51565F;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.pdf .note:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.pdf .note-title {
+    font-weight: bold;
+}
+
+.pdf .label {
+    border-radius: 0;
+}
+
+.pdf .no-margin {
+    margin: 0;
+}
+
+.pdf .despatch-today {
+    color: #008000;
+}
+
+.pdf .despatch-overdue {
+    color: #D83A3A;
+}

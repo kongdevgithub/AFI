@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+
+  nginx:
+    environment:
+      - VIRTUAL_HOST=afi.127.0.0.1.xip.io
+    networks:
+      - default
+      - nginx-proxy
+    volumes:
+      - ./build/nginx/config/etc/letsencrypt/live/dev.afi.ink:/etc/letsencrypt/live/afi.ink
+    ports:
+     - 80:80
+     - 443:443
+
+  db:
+   ports:
+     - 3306:3306
+
+  phpmyadmin:
+    environment:
+      - VIRTUAL_HOST=pma.afi.127.0.0.1.xip.io
+    networks:
+      - default
+      - nginx-proxy
+    volumes:
+      - ./build/phpmyadmin/etc/phpmyadmin/config.dev.inc.php:/etc/phpmyadmin/config.user.inc.php
+    ports:
+    - 127.0.0.1:56380:80
+
+
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy

@@ -1,0 +1,21 @@
+{
+    "name": "mar/yii2-simple-eav",
+    "description": "simple way to add to your application dynamic attributes to every model you wish",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","eav"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mar",
+            "email": "igtp@openmailbox.org"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "mar\\eav\\": ""
+        }
+    }
+}
